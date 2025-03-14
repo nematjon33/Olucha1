@@ -1,42 +1,94 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Olucha - Магазин свежих продуктов</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <script defer src="js/script.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Olucha - Магазин свежих продуктов</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <script defer src="js/script.js"></script>
 </head>
 <body>
-
-    <header>
-        <button class="back-btn">←</button>
-        <h1>Сейчас сезон</h1>
-        <button class="search-btn">🔍</button>
-    </header>
-
-    <nav>
-        <ul>
-            <li><button class="category-btn" data-category="all">Все</button></li>
-            <li><button class="category-btn" data-category="vegetables">Овощи</button></li>
-            <li><button class="category-btn" data-category="fruits">Фрукты</button></li>
-            <li><button class="category-btn" data-category="dried">Сухофрукты</button></li>
-            <li><button class="category-btn" data-category="drinks">Напитки</button></li>
-        </ul>
-    </nav>
-
-    <section id="products" class="product-list"></section>
-
-    <button class="cart-floating-btn" onclick="openCart()">🛒 <span id="cart-count">0</span></button>
-
-    <div id="cart-modal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeCart()">&times;</span>
-            <h2>Корзина</h2>
-            <div id="cart-items"></div>
-            <button onclick="checkout()">Оформить заказ</button>
-        </div>
+  <header class="site-header">
+    <div class="header-inner">
+      <h1 class="logo">Olucha</h1>
+      <div class="header-controls">
+        <!-- Новая функция: поиск товаров -->
+        <input type="text" id="search-input" placeholder="Поиск товаров..." />
+        <!-- Сортировка по цене -->
+        <select id="sort-select">
+          <option value="default">Сортировать</option>
+          <option value="price-asc">Цена: по возрастанию</option>
+          <option value="price-desc">Цена: по убыванию</option>
+        </select>
+      </div>
+      <div class="header-buttons">
+        <button class="quick-order-btn" id="openQuickOrder">Самокат от 15 минут</button>
+        <button class="cart-button" id="openCart">
+          🛒 <span id="cart-count">0</span>
+        </button>
+      </div>
     </div>
+  </header>
 
+  <nav class="site-nav">
+    <ul>
+      <li><button class="category-btn active" data-category="all">Все</button></li>
+      <li><button class="category-btn" data-category="vegetables">Овощи</button></li>
+      <li><button class="category-btn" data-category="fruits">Фрукты</button></li>
+      <li><button class="category-btn" data-category="dried">Сухофрукты</button></li>
+      <li><button class="category-btn" data-category="drinks">Напитки</button></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section id="products" class="product-list"></section>
+  </main>
+
+  <!-- Кнопка "Наверх" -->
+  <button id="back-to-top" title="Наверх">↑</button>
+
+  <!-- Модальное окно корзины -->
+  <div id="cart-modal" class="modal">
+    <div class="modal-content">
+      <button class="modal-close" id="closeCart">&times;</button>
+      <h2>Корзина</h2>
+      <div id="cart-items"></div>
+      <button class="checkout-btn" id="checkoutBtn">Оформить заказ</button>
+    </div>
+  </div>
+
+  <!-- Модальное окно для быстрого заказа "Самокат от 15 минут" -->
+  <div id="quick-order-modal" class="modal">
+    <div class="modal-content">
+      <button class="modal-close" id="closeQuickOrder">&times;</button>
+      <h2>Заказать доставку «Самокат от 15 минут»</h2>
+      <form id="quick-order-form">
+        <div class="form-group">
+          <label for="qo-name">Имя:</label>
+          <input type="text" id="qo-name" required />
+        </div>
+        <div class="form-group">
+          <label for="qo-address">Адрес доставки:</label>
+          <input type="text" id="qo-address" required />
+        </div>
+        <div class="form-group">
+          <label for="qo-time">Время доставки <span>(до 2 часов, интервал 10:00–21:00)</span>:</label>
+          <input type="text" id="qo-time" placeholder="например, 18:30" required />
+        </div>
+        <div class="form-group">
+          <label for="qo-phone">Телефон для связи (+7):</label>
+          <input type="tel" id="qo-phone" placeholder="+7..." required />
+        </div>
+        <div class="delivery-note">
+          <p>Доставка осуществляется только по городу Челябинск</p>
+        </div>
+        <button type="submit">Оформить заказ</button>
+      </form>
+    </div>
+  </div>
 </body>
-</html>
+    </html>
