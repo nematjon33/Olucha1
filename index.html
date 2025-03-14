@@ -10,9 +10,9 @@
 <body>
 
     <header>
-        <h1>Olucha</h1>
-        <p>Свежие овощи, фрукты и сухофрукты</p>
-        <button class="cart-button" onclick="openCart()">🛒 Корзина (<span id="cart-count">0</span>)</button>
+        <button class="back-btn">←</button>
+        <h1>Сейчас сезон</h1>
+        <button class="search-btn">🔍</button>
     </header>
 
     <nav>
@@ -26,6 +26,8 @@
     </nav>
 
     <section id="products" class="product-list"></section>
+
+    <button class="cart-floating-btn" onclick="openCart()">🛒 <span id="cart-count">0</span></button>
 
     <div id="cart-modal" class="modal">
         <div class="modal-content">
