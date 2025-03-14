@@ -1,15 +1,29 @@
-# Olucha1
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
-    <title>Мой сайт</title>
-    <style>
-        body { font-family: Arial; text-align: center; }
-        h1 { color: #4CAF50; }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Магазин овощей и фруктов</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Добро пожаловать!</h1>
-    <p>Это мой первый сайт на GitHub Pages 🚀</p>
+    <header>
+        <h1>Магазин Овощей и Фруктов</h1>
+        <button onclick="openCart()">🛒 Корзина (<span id="cart-count">0</span>)</button>
+    </header>
+
+    <main id="catalog">
+        <!-- Товары будут загружены сюда -->
+    </main>
+
+    <div id="cart" class="hidden">
+        <h2>Корзина</h2>
+        <ul id="cart-items"></ul>
+        <p>Общая сумма: <span id="total-price">0</span> ₽</p>
+        <button onclick="checkout()">Оформить заказ</button>
+        <button onclick="closeCart()">Закрыть</button>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
