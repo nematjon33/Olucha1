@@ -1,36 +1,109 @@
+$primary-color: #4CAF50;
+$secondary-color: #fff;
+$button-hover: #45a049;
+
 body {
     font-family: Arial, sans-serif;
-}
-
-header {
-    background: #4CAF50;
-    color: white;
-    padding: 15px;
+    margin: 0;
+    padding: 0;
     text-align: center;
 }
 
-nav a {
-    margin: 0 10px;
-    color: white;
-    text-decoration: none;
+header {
+    background: $primary-color;
+    color: $secondary-color;
+    padding: 20px;
 }
 
-.products {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-.product {
-    border: 1px solid #ddd;
-    padding: 10px;
-    width: 200px;
-}
-
-button {
-    background: #4CAF50;
-    color: white;
-    padding: 10px;
+.cart-button {
+    background: $secondary-color;
+    color: $primary-color;
+    padding: 10px 20px;
     border: none;
     cursor: pointer;
+    transition: 0.3s;
+    
+    &:hover {
+        background: $button-hover;
+        color: $secondary-color;
+    }
 }
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    
+    li {
+        display: inline;
+        margin: 10px;
+        
+        .category-btn {
+            background: none;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+
+            &:hover {
+                color: $primary-color;
+                font-weight: bold;
+            }
+        }
+    }
+}
+
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+    
+    .product {
+        border: 1px solid #ddd;
+        margin: 10px;
+        padding: 10px;
+        width: 200px;
+        text-align: center;
+        
+        img {
+            width: 100%;
+            height: auto;
+        }
+        
+        button {
+            background: $primary-color;
+            color: $secondary-color;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            transition: 0.3s;
+
+            &:hover {
+                background: $button-hover;
+            }
+        }
+    }
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    
+    .modal-content {
+        background: $secondary-color;
+        padding: 20px;
+        margin: 10% auto;
+        width: 50%;
+        text-align: left;
+        
+        .close {
+            float: right;
+            cursor: pointer;
+        }
+    }
+            }
