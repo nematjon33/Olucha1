@@ -1,51 +1,52 @@
-const products = [
-    { id: 1, name: "Яблоки", price: 100 },
-    { id: 2, name: "Бананы", price: 120 },
-    { id: 3, name: "Морковь", price: 80 }
-];
-
 let cart = [];
 
-function loadCatalog() {
-    const catalog = document.getElementById("catalog");
-    products.forEach(product => {
-        const item = document.createElement("div");
-        item.className = "product";
-        item.innerHTML = `<h3>${product.name}</h3><p>${product.price} ₽</p>
-                          <button onclick="addToCart(${product.id})">Добавить</button>`;
-        catalog.appendChild(item);
+document.querySelectorAll(".add-to-cart").forEach(button => {
+    button.addEventListener("click", (event) => {
+        let product = event.target.parentElement;
+        let name = product.dataset.name;
+        let price = parseInt(product.dataset.price);
+        
+        cart.push({ name, price });
+        updateCartCount();
     });
+});
+
+function updateCartCount() {
+    document.getElementById("cart-count").textContent = cart.length;
 }
 
-function addToCart(productId) {
-    const product = products.find(p => p.id === productId);
-    cart.push(product);
-    document.getElementById("cart-count").innerText = cart.length;
-}
-
-function openCart() {
-    document.getElementById("cart").classList.remove("hidden");
-    const cartItems = document.getElementById("cart-items");
+document.getElementById("cart-button").addEventListener("click", () => {
+    let cartItems = document.getElementById("cart-items");
     cartItems.innerHTML = "";
-    let total = 0;
 
-    cart.forEach(item => {
+    let total = 0;
+    cart.forEach((item, index) => {
         total += item.price;
-        cartItems.innerHTML += `<li>${item.name} - ${item.price} ₽</li>`;
+        let li = document.createElement("li");
+        li.textContent = `${item.name} - ${item.price} ₽`;
+        cartItems.appendChild(li);
     });
 
-    document.getElementById("total-price").innerText = total;
-}
+    document.getElementById("total-price").textContent = total;
+    document.getElementById("cart-modal").style.display = "block";
+});
 
-function closeCart() {
-    document.getElementById("cart").classList.add("hidden");
-}
+document.getElementById("close-cart").addEventListener("click", () => {
+    document.getElementById("cart-modal").style.display = "none";
+});
 
-function checkout() {
-    alert("Заказ оформлен!");
-    cart = [];
-    document.getElementById("cart-count").innerText = "0";
-    closeCart();
-}
+document.getElementById("checkout").addEventListener("click", () => {
+    if (cart.length === 0) {
+        alert("Корзина пуста!");
+        return;
+    }
 
-window.onload = loadCatalog;
+    let orderDetails = cart.map(item => `${item.name} - ${item.price} ₽`).join("\n");
+    let total = cart.reduce((sum, item) => sum + item.price, 0);
+
+    let email = "nematcon700@gmail.com";
+    let subject = encodeURIComponent("Новый заказ");
+    let body = encodeURIComponent(`Заказ:\n${orderDetails}\n\nИтого: ${total} ₽`);
+
+    window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+});
