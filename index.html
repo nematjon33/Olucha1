@@ -2,50 +2,39 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>FreshMarket - Главная</title>
-    <link rel="stylesheet" href="styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Olucha - Магазин свежих продуктов</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script defer src="js/script.js"></script>
 </head>
 <body>
+
     <header>
-        <h1>FreshMarket</h1>
-        <nav>
-            <a href="index.html">Главная</a>
-            <a href="catalog.html">Каталог</a>
-            <a href="cart.html">Корзина</a>
-            <a href="account.html">Личный кабинет</a>
-            <a href="contacts.html">Контакты</a>
-        </nav>
+        <h1>Olucha</h1>
+        <p>Свежие овощи, фрукты и сухофрукты</p>
+        <button class="cart-button" onclick="openCart()">🛒 Корзина (<span id="cart-count">0</span>)</button>
     </header>
-    
-    <section class="slider">
-        <h2>Акции и сезонные предложения</h2>
-        <div class="slides">
-            <img src="img/sale1.jpg" alt="Акция 1">
-            <img src="img/sale2.jpg" alt="Акция 2">
-        </div>
-    </section>
-    
-    <section class="categories">
-        <h2>Категории товаров</h2>
-        <div class="category-list">
-            <a href="catalog.html?category=vegetables">Овощи</a>
-            <a href="catalog.html?category=fruits">Фрукты</a>
-            <a href="catalog.html?category=greens">Зелень</a>
-        </div>
-    </section>
 
-    <section class="popular-products">
-        <h2>Популярные товары</h2>
-        <div class="products">
-            <div class="product">
-                <img src="img/potato.jpg" alt="Картошка">
-                <h3>Картошка</h3>
-                <p>Цена: 100₽/кг</p>
-                <button onclick="addToCart('potato')">В корзину</button>
-            </div>
-        </div>
-    </section>
+    <nav>
+        <ul>
+            <li><button class="category-btn" data-category="all">Все</button></li>
+            <li><button class="category-btn" data-category="vegetables">Овощи</button></li>
+            <li><button class="category-btn" data-category="fruits">Фрукты</button></li>
+            <li><button class="category-btn" data-category="dried">Сухофрукты</button></li>
+            <li><button class="category-btn" data-category="drinks">Напитки</button></li>
+        </ul>
+    </nav>
 
-    <script src="script.js"></script>
+    <section id="products" class="product-list"></section>
+
+    <div id="cart-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeCart()">&times;</span>
+            <h2>Корзина</h2>
+            <div id="cart-items"></div>
+            <button onclick="checkout()">Оформить заказ</button>
+        </div>
+    </div>
+
 </body>
 </html>
